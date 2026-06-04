@@ -1,0 +1,11 @@
+# Raw data (too large for git, sample only)
+data/ml-20m/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+env/
+venv/
