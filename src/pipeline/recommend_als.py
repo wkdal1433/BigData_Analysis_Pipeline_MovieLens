@@ -21,7 +21,7 @@ def main():
     print(f"Data loaded in {time.time() - start_time:.2f} seconds.")
     
     # ==============================================================================
-    # [1차 시도 - UDF로 직접 지실려고 했는데 망함]
+    # [1차 시도 - UDF로 직접 짜보려고 했는데 망함]
     # 
     # from pyspark.sql.functions import udf
     # from pyspark.sql.types import FloatType
@@ -33,8 +33,8 @@ def main():
     # joined_df = ratings.withColumn("custom_score", join_udf(col("userId"), col("movieId")))
     # joined_df.collect()
     # 
-    # 이거 20M 돌리니까 OOM 뜨서 애드려 징짓
-    # 파이썬 UDF는 직렬화 오버헤드가 커서 러 같음 -- ALS 기본기능 쓰는 방향으로 바꾸는게 나아보임
+    # 이거 20M 돌리니까 OOM 뜨면서 에러 터짐
+    # 파이썬 UDF는 직렬화 오버헤드가 커서 느린 것 같음 -- ALS 기본기능 쓰는 방향으로 바꾸는게 나아보임
     # ==============================================================================
     
     print("Training ALS model...")

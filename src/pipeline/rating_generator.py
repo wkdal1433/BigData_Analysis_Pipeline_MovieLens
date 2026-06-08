@@ -16,7 +16,8 @@ def main():
     )
     
     topic_name = 'movielens-ratings'
-    csv_path = r'C:\Users\scspr\WorkSpace\for_school\BigData-Analysis-Pipeline-MovieLens\data\ml-20m\ratings.csv'
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    csv_path = os.path.join(base_dir, 'data', 'ml-20m', 'ratings.csv')
     
     # ratings.csv 로드해서 스트리밍 시뮬레이션용 샘플 추출
     samples = []

@@ -30,15 +30,11 @@ STORED AS PARQUET;
 INSERT OVERWRITE TABLE ratings_parquet
 SELECT * FROM ratings_csv;
 
--- 4. 아래 쿼리로 속도차이 직접 비교해봄
+-- 4. 아래 쿼리로 속도차이 직접 비교 (CSV vs Parquet)
 -- [테스트 1] 전체 데이터 카운트
--- CSV:
--- SELECT COUNT(*) FROM ratings_csv;
--- Parquet:
--- SELECT COUNT(*) FROM ratings_parquet;
+SELECT COUNT(*) FROM ratings_csv;
+SELECT COUNT(*) FROM ratings_parquet;
 
--- [테스트 2] 영화별 평균 평점 계산 (Top 10)
--- CSV:
--- SELECT movieId, AVG(rating) as avg_rating FROM ratings_csv GROUP BY movieId ORDER BY avg_rating DESC LIMIT 10;
--- Parquet:
--- SELECT movieId, AVG(rating) as avg_rating FROM ratings_parquet GROUP BY movieId ORDER BY avg_rating DESC LIMIT 10;
+-- [테스트 2] 영화별 평균 평점 Top 10
+SELECT movieId, AVG(rating) as avg_rating FROM ratings_csv GROUP BY movieId ORDER BY avg_rating DESC LIMIT 10;
+SELECT movieId, AVG(rating) as avg_rating FROM ratings_parquet GROUP BY movieId ORDER BY avg_rating DESC LIMIT 10;

@@ -3,11 +3,12 @@ import json
 import time
 import os
 
-API_KEY = "ed53812d2b223cbd61a05844f51041a4"
+API_KEY = os.environ.get("TMDB_API_KEY", "")  # 환경변수로 주입 (공개 repo 키 노출 방지)
 
 def fetch_tmdb_data():
-    links_path = r'C:\Users\scspr\WorkSpace\for_school\BigData-Analysis-Pipeline-MovieLens\data\ml-20m\links.csv'
-    output_path = r'C:\Users\scspr\WorkSpace\for_school\BigData-Analysis-Pipeline-MovieLens\data\tmdb_movies.json'
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    links_path = os.path.join(base_dir, 'data', 'ml-20m', 'links.csv')
+    output_path = os.path.join(base_dir, 'data', 'tmdb_movies.json')
     
     if not os.path.exists(links_path):
         print(f"Error: Could not find {links_path}")
